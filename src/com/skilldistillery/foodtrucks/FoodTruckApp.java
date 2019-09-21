@@ -138,7 +138,7 @@ public class FoodTruckApp {
 			}
 		}
 
-		for (int i = 0; i < trucks.length; i++) { // looks for a match or matches if there is a tie
+		for (int i = 0; i < trucks.length; i++) { // look for the match and any ties
 			if (highestRating == trucks[i].getRating()) { 
 				System.out.println("Highest Rated " + trucks[i].toString());	
 			}
