@@ -25,8 +25,8 @@
 
 ### Lessons learned:
 
-#### I learned how to effectively handle a null pointer errors Java. This error was my friend in helping me to see that I had null data inside my arrays because of errors. These errors helped me make this program work, and I am thankful that Eclipse displayed this error to me.    
+#### I learned how to effectively handle a null pointer error in Java. This error was my friend in helping me to see that I had null data inside my arrays because of my errors. This helped me make this program work, and I am thankful that Eclipse displayed this error to me.    
 
-#### Additionally, I discovered many new methods like Arrays.copyOf() which was used in the FoodTruckApp (line 43). This method copies the specified array, truncating or padding with zeros (if necessary) so the copy has the specified length (https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html).
+#### Additionally, I discovered many new methods like Arrays.copyOf() which was used in the FoodTruckApp (line 43).
 
-#### I think the biggest thing I learned this week was Object-Oriented Programming in Java. I used this knowledge to create an Object, Implement the toString() method in my classes to represent object state, understand object references and the heap, and use constructors to give data to object fields.
+#### I think the biggest thing I learned this week was Object-Oriented Programming in Java. I used this new knowledge to create an Object, implement the toString() method, understand the heap, and use constructors.
