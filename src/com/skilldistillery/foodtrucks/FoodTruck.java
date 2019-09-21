@@ -53,8 +53,8 @@ public class FoodTruck {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("FoodTruck [truckName=").append(truckName).append(", foodType=").append(foodType)
-				.append(", rating=").append(rating).append(", truckID=").append(truckID).append("]");
+		builder.append("Food Truck: ").append(truckName).append(", Food Type: ").append(foodType)
+				.append(", Rating: ").append(rating).append(", and truckID: ").append(truckID).append(".");
 		return builder.toString();
 	}
 
