@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class FoodTruckApp {
+	
 
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
@@ -14,7 +15,7 @@ public class FoodTruckApp {
 		keyboard.close();
 	}
 
-	private void launchApp(Scanner keyboard, FoodTruckApp foodTruckApp) {
+	public void launchApp(Scanner keyboard, FoodTruckApp foodTruckApp) {
 		System.out.println("Welcome to the FoodTruckApp!");
 		FoodTruck[] trucks = foodTruckApp.inputTruck(keyboard);
 
@@ -25,7 +26,7 @@ public class FoodTruckApp {
 		}
 	}
 
-	private FoodTruck[] inputTruck(Scanner keyboard) {
+	public FoodTruck[] inputTruck(Scanner keyboard) {
 		System.out.println("How many food trucks do you want to enter?");
 		int arrIndex = keyboard.nextInt();
 		keyboard.nextLine();
@@ -34,6 +35,7 @@ public class FoodTruckApp {
 
 		String foodType = "";
 		double rating = 0;
+		int count = 1;
 
 		for (int i = 0; i < foodTruckArr.length; i++) {
 			System.out.println("Enter a food truck's name or \"quit\" to stop entering trucks:");
@@ -60,14 +62,16 @@ public class FoodTruckApp {
 				foodTruckArr[i].setTruckName(truckName);
 				foodTruckArr[i].setFoodType(foodType);
 				foodTruckArr[i].setRating(rating);
-				foodTruckArr[i].setTruckID(i + 1); 
+				
+				foodTruckArr[i].setTruckID(i, count);
+//				count++;
 			}
 		}
 
 		return foodTruckArr;
 	}
 
-	private void printMenu() {
+	public void printMenu() {
 		System.out.println();
 		System.out.println("|*****************************************|");
 		System.out.println("| * Please choose one of the following: * |");
@@ -78,7 +82,7 @@ public class FoodTruckApp {
 		System.out.println("|*****************************************|");
 	}
 
-	private boolean chooseFromMenu(Scanner keyboard, FoodTruck[] trucks) {
+	public boolean chooseFromMenu(Scanner keyboard, FoodTruck[] trucks) {
 		int selection = 0;
 
 		do {
@@ -110,13 +114,13 @@ public class FoodTruckApp {
 		return true;
 	}
 
-	private void displayTrucks(FoodTruck[] trucks) {
+	public void displayTrucks(FoodTruck[] trucks) {
 		for (int i = 0; i < trucks.length; i++) {
 			System.out.println(trucks[i].toString());
 		}
 	}
 
-	private void seeAverageRating(FoodTruck[] trucks) {
+	public void seeAverageRating(FoodTruck[] trucks) {
 		double sumRatings = 0;
 
 		for (int i = 0; i < trucks.length; i++) {
@@ -129,7 +133,7 @@ public class FoodTruckApp {
 		System.out.println("Average Food Truck Rating: " + averageRounded);
 	}
 
-	private void showHighestRated(FoodTruck[] trucks) {
+	public void showHighestRated(FoodTruck[] trucks) {
 		double highestRating = trucks[0].getRating();
 
 		for (int i = 0; i < trucks.length; i++) {

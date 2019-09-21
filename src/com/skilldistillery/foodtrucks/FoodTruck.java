@@ -5,6 +5,7 @@ public class FoodTruck {
 	private String foodType;
 	private double rating;
 	private int truckID;
+	private static int nextTruckID = 1;
 
 	public FoodTruck() {
 
@@ -46,8 +47,17 @@ public class FoodTruck {
 		return truckID;
 	}
 
-	public void setTruckID(int truckID) {
+	public void setTruckID(int truckID, int nextTruckID) {
+		truckID = truckID + nextTruckID;
 		this.truckID = truckID;
+	}
+
+	public static int getNextTruckID() {
+		return nextTruckID;
+	}
+
+	public static void setNextTruckID(int nextTruckID) {
+		FoodTruck.nextTruckID = nextTruckID;
 	}
 
 	public String toString() {
