@@ -50,10 +50,9 @@ public class FoodTruck {
 		this.truckID = truckID;
 	}
 
-	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Food Truck: ").append(truckName).append(", Food Type: ").append(foodType)
+		builder.append("Food Truck Name: ").append(truckName).append(", Food Type: ").append(foodType)
 				.append(", Rating: ").append(rating).append(", and truckID: ").append(truckID).append(".");
 		return builder.toString();
 	}

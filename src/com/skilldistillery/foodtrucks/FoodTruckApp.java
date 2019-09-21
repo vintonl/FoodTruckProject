@@ -9,62 +9,62 @@ public class FoodTruckApp {
 		Scanner keyboard = new Scanner(System.in);
 		FoodTruckApp foodTruckApp = new FoodTruckApp();
 
-		foodTruckApp.launch(keyboard, foodTruckApp);
+		foodTruckApp.launchApp(keyboard, foodTruckApp);
 
 		keyboard.close();
 	}
 
-	private void launch(Scanner kb, FoodTruckApp foodTruckApp) {
-		boolean run = true;
-		
+	private void launchApp(Scanner keyboard, FoodTruckApp foodTruckApp) {
 		System.out.println("Welcome to the FoodTruckApp!");
-		FoodTruck[] trucks = foodTruckApp.inputTruck(kb);
+		FoodTruck[] trucks = foodTruckApp.inputTruck(keyboard);
 
-		while (run) {
+		boolean runMenu = true;
+		while (runMenu) {
 			foodTruckApp.printMenu();
-			run = foodTruckApp.chooseItemFromMenu(kb, trucks);
+			runMenu = foodTruckApp.chooseFromMenu(keyboard, trucks);
 		}
 	}
 
-	private FoodTruck[] inputTruck(Scanner kb) {
+	private FoodTruck[] inputTruck(Scanner keyboard) {
 		System.out.println("How many food trucks do you want to enter?");
-		int arrIndex = kb.nextInt();
-		FoodTruck[] ftArr = new FoodTruck[arrIndex];
-		kb.nextLine();
+		int arrIndex = keyboard.nextInt();
+		keyboard.nextLine();
+		
+		FoodTruck[] foodTruckArr = new FoodTruck[arrIndex];
 
 		String foodType = "";
 		double rating = 0;
 
-		for (int i = 0; i < ftArr.length; i++) {
-			System.out.println("Enter a food truck's name or \"quit\": ");
-			String truckName = kb.nextLine();
+		for (int i = 0; i < foodTruckArr.length; i++) {
+			System.out.println("Enter a food truck's name or \"quit\" to stop entering trucks:");
+			String truckName = keyboard.nextLine();
 			
 			if (truckName.equalsIgnoreCase("quit")) {
-				FoodTruck[] earlyBreakFTArr = Arrays.copyOf(ftArr, i); // creates a copy of ftArr
-				return earlyBreakFTArr; // cancels loop by returning the copied array
+				FoodTruck[] earlyExitArr = Arrays.copyOf(foodTruckArr, i);
+				return earlyExitArr; 
 			} else {
-				System.out.println("Enter type of food: ");
-				foodType = kb.nextLine();
+				System.out.println("Enter type of food:");
+				foodType = keyboard.nextLine();
 
 				do {
-					System.out.println("Enter rating (0-5): ");
-					rating = kb.nextDouble();
+					System.out.println("Enter rating (0-5):");
+					rating = keyboard.nextDouble();
 					if (rating > 5 || rating < 0) {
 						System.out.println("The rating was out of range. Please try again.");
 					}
 				} while (rating > 5 || rating < 0);
-				kb.nextLine();
+				keyboard.nextLine();
 
-				ftArr[i] = new FoodTruck();
-				ftArr[i].setTruckName(truckName);
-				ftArr[i].setTruckName(truckName);
-				ftArr[i].setFoodType(foodType);
-				ftArr[i].setRating(rating);
-				ftArr[i].setTruckID(i + 100); // truckID assigned by the index + 100
+				foodTruckArr[i] = new FoodTruck();
+				foodTruckArr[i].setTruckName(truckName);
+				foodTruckArr[i].setTruckName(truckName);
+				foodTruckArr[i].setFoodType(foodType);
+				foodTruckArr[i].setRating(rating);
+				foodTruckArr[i].setTruckID(i + 1); 
 			}
 		}
 
-		return ftArr;
+		return foodTruckArr;
 	}
 
 	private void printMenu() {
@@ -78,17 +78,17 @@ public class FoodTruckApp {
 		System.out.println("|*****************************************|");
 	}
 
-	private boolean chooseItemFromMenu(Scanner kb, FoodTruck[] trucks) {
+	private boolean chooseFromMenu(Scanner keyboard, FoodTruck[] trucks) {
 		int selection = 0;
 
 		do {
 			System.out.println("Enter your selection (1-4): ");
-			selection = kb.nextInt();
+			selection = keyboard.nextInt();
 
 			if (selection > 4 || selection < 1) {
 				System.out.println("Your selection was out of range. Please try again.");
 			}
-		} while (selection > 4 || selection < 1); // repeats asking until the user's selection is in range
+		} while (selection > 4 || selection < 1);
 
 		System.out.println();
 
@@ -117,30 +117,31 @@ public class FoodTruckApp {
 	}
 
 	private void seeAverageRating(FoodTruck[] trucks) {
-		double sum = 0;
+		double sumRatings = 0;
 
 		for (int i = 0; i < trucks.length; i++) {
-			sum += trucks[i].getRating();
+			sumRatings += trucks[i].getRating();
 		}
 
-		double average = sum / trucks.length * 1.0;
-		average = (Math.round((average) * 10.0)) / 10.0;  // rounds average to nearest tenth
+		double average = sumRatings / trucks.length * 1.0;
+		double averageRounded = (Math.round((average) * 100.0)) / 100.0;
 		
-		System.out.println("Average Food Truck Rating: " + average);
+		System.out.println("Average Food Truck Rating: " + averageRounded);
 	}
 
 	private void showHighestRated(FoodTruck[] trucks) {
-		double highest = trucks[0].getRating();
-		int highestIndex = 0;
+		double highestRating = trucks[0].getRating();
 
 		for (int i = 0; i < trucks.length; i++) {
-			if (trucks[i].getRating() > highest) {
-				highestIndex = i;
+			if (trucks[i].getRating() > highestRating) {
+				highestRating = trucks[i].getRating(); 
 			}
 		}
 
-		String highestProperties = trucks[highestIndex].toString();
-
-		System.out.println("Highest Rated " + highestProperties);
+		for (int i = 0; i < trucks.length; i++) { // looks for a match or matches if there is a tie
+			if (highestRating == trucks[i].getRating()) { 
+				System.out.println("Highest Rated " + trucks[i].toString());	
+			}
+		}
 	}
 }
