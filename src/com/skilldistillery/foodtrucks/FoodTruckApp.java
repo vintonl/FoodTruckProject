@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class FoodTruckApp {
-	
 
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
@@ -30,7 +29,7 @@ public class FoodTruckApp {
 		System.out.println("How many food trucks do you want to enter?");
 		int arrIndex = keyboard.nextInt();
 		keyboard.nextLine();
-		
+
 		FoodTruck[] foodTruckArr = new FoodTruck[arrIndex];
 
 		String foodType = "";
@@ -40,10 +39,10 @@ public class FoodTruckApp {
 		for (int i = 0; i < foodTruckArr.length; i++) {
 			System.out.println("Enter a food truck's name or \"quit\" to stop entering trucks:");
 			String truckName = keyboard.nextLine();
-			
+
 			if (truckName.equalsIgnoreCase("quit")) {
 				FoodTruck[] earlyExitArr = Arrays.copyOf(foodTruckArr, i);
-				return earlyExitArr; 
+				return earlyExitArr;
 			} else {
 				System.out.println("Enter type of food:");
 				foodType = keyboard.nextLine();
@@ -62,7 +61,7 @@ public class FoodTruckApp {
 				foodTruckArr[i].setTruckName(truckName);
 				foodTruckArr[i].setFoodType(foodType);
 				foodTruckArr[i].setRating(rating);
-				
+
 				foodTruckArr[i].setTruckID(i, count);
 //				count++;
 			}
@@ -73,13 +72,14 @@ public class FoodTruckApp {
 
 	public void printMenu() {
 		System.out.println();
-		System.out.println("|*****************************************|");
+		System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
 		System.out.println("| * Please choose one of the following: * |");
 		System.out.println("|1. List all existing food trucks.        |");
 		System.out.println("|2. See the average rating of food trucks.|");
 		System.out.println("|3. Display the highest-rated food truck. |");
 		System.out.println("|4. Quit the program.                     |");
-		System.out.println("|*****************************************|");
+		System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
+		System.out.println();
 	}
 
 	public boolean chooseFromMenu(Scanner keyboard, FoodTruck[] trucks) {
@@ -115,6 +115,8 @@ public class FoodTruckApp {
 	}
 
 	public void displayTrucks(FoodTruck[] trucks) {
+		System.out.println("All existing food trucks:");
+		
 		for (int i = 0; i < trucks.length; i++) {
 			System.out.println(trucks[i].toString());
 		}
@@ -129,7 +131,7 @@ public class FoodTruckApp {
 
 		double average = sumRatings / trucks.length * 1.0;
 		double averageRounded = (Math.round((average) * 100.0)) / 100.0;
-		
+
 		System.out.println("Average Food Truck Rating: " + averageRounded);
 	}
 
@@ -138,13 +140,26 @@ public class FoodTruckApp {
 
 		for (int i = 0; i < trucks.length; i++) {
 			if (trucks[i].getRating() > highestRating) {
-				highestRating = trucks[i].getRating(); 
+				highestRating = trucks[i].getRating();
 			}
 		}
 
+		int ties = 0;
+		for (int i = 0; i < trucks.length; i++) {
+			if (highestRating == trucks[i].getRating()) {
+				ties++;
+			}
+		}
+
+		if (ties > 1) {
+			System.out.println(ties + " food trucks tie for the highest-rated:");
+		} else {
+			System.out.println("The highest-rated food truck is:");
+		}
+
 		for (int i = 0; i < trucks.length; i++) { // look for the match and any ties
-			if (highestRating == trucks[i].getRating()) { 
-				System.out.println("Highest Rated " + trucks[i].toString());	
+			if (highestRating == trucks[i].getRating()) {
+				System.out.println(trucks[i].toString());
 			}
 		}
 	}
