@@ -5,19 +5,16 @@ public class FoodTruck {
 	private String foodType;
 	private double rating;
 	private int truckID;
-	private static int nextTruckID = 1;
+	private static int nextTruckID = 100;
 
 	public FoodTruck() {
-		this.truckID = nextTruckID;
-		nextTruckID++;
 	}
 
 	public FoodTruck(String truckName, String foodType, double rating, int truckID) {
 		this.truckName = truckName;
 		this.foodType = foodType;
 		this.rating = rating;
-		this.truckID = nextTruckID;
-		nextTruckID++;
+		this.truckID = truckID;
 	}
 
 	public String getTruckName() {
@@ -49,7 +46,7 @@ public class FoodTruck {
 	}
 
 	public void setTruckID(int truckID) {
-		this.truckID = truckID;
+		this.truckID = truckID + nextTruckID;
 	}
 
 	public static int getNextTruckID() {
@@ -58,6 +55,7 @@ public class FoodTruck {
 
 	public static void setNextTruckID(int nextTruckID) {
 		FoodTruck.nextTruckID = nextTruckID;
+		nextTruckID++;
 	}
 
 	public String toString() {
