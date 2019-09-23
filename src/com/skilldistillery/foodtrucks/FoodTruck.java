@@ -8,7 +8,8 @@ public class FoodTruck {
 	private static int nextTruckID = 1;
 
 	public FoodTruck() {
-
+		this.truckID = nextTruckID;
+		nextTruckID++;
 	}
 
 	public FoodTruck(String truckName, String foodType, double rating, int truckID) {
@@ -16,7 +17,8 @@ public class FoodTruck {
 		this.truckName = truckName;
 		this.foodType = foodType;
 		this.rating = rating;
-		this.truckID = truckID;
+		this.truckID = nextTruckID;
+		nextTruckID++;
 	}
 
 	public String getTruckName() {
@@ -47,17 +49,8 @@ public class FoodTruck {
 		return truckID;
 	}
 
-	public void setTruckID(int truckID, int nextTruckID) {
-		truckID = truckID + nextTruckID;
+	public void setTruckID(int truckID) {
 		this.truckID = truckID;
-	}
-
-	public static int getNextTruckID() {
-		return nextTruckID;
-	}
-
-	public static void setNextTruckID(int nextTruckID) {
-		FoodTruck.nextTruckID = nextTruckID;
 	}
 
 	public String toString() {

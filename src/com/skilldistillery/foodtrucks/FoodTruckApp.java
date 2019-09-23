@@ -34,7 +34,6 @@ public class FoodTruckApp {
 
 		String foodType = "";
 		double rating = 0;
-		int count = 1;
 
 		for (int i = 0; i < foodTruckArr.length; i++) {
 			System.out.println("Enter a food truck's name or \"quit\" to stop entering trucks:");
@@ -61,9 +60,7 @@ public class FoodTruckApp {
 				foodTruckArr[i].setTruckName(truckName);
 				foodTruckArr[i].setFoodType(foodType);
 				foodTruckArr[i].setRating(rating);
-
-				foodTruckArr[i].setTruckID(i, count);
-//				count++;
+				foodTruckArr[i].setTruckID(i);
 			}
 		}
 
