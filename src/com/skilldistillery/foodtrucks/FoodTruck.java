@@ -13,7 +13,6 @@ public class FoodTruck {
 	}
 
 	public FoodTruck(String truckName, String foodType, double rating, int truckID) {
-		super();
 		this.truckName = truckName;
 		this.foodType = foodType;
 		this.rating = rating;
@@ -51,6 +50,14 @@ public class FoodTruck {
 
 	public void setTruckID(int truckID) {
 		this.truckID = truckID;
+	}
+
+	public static int getNextTruckID() {
+		return nextTruckID;
+	}
+
+	public static void setNextTruckID(int nextTruckID) {
+		FoodTruck.nextTruckID = nextTruckID;
 	}
 
 	public String toString() {
